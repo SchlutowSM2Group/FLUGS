@@ -1,0 +1,938 @@
+# Variable metadata for plotting and analysis
+# This file contains short names, long names, and units for all variables used in FLUGS
+
+# =============================================================================
+# Time variables
+# =============================================================================
+[variables.date]
+short_name = "Date"
+long_name = "Date"
+unit = ""
+unit_latex = ""
+
+[variables.time]
+short_name = "Time"
+long_name = "Time"
+unit = ""
+unit_latex = ""
+
+[variables.DOY]
+short_name = "DOY"
+long_name = "Day of Year"
+unit = "day"
+unit_latex = "day"
+
+# =============================================================================
+# Synthetic data variables
+# =============================================================================
+[variables.Ts]
+short_name = "Ts"
+long_name = "Surface Temperature"
+unit = "°C"
+unit_latex = "^\\circ C"
+
+# =============================================================================
+# Atmospheric variables
+# =============================================================================
+[variables.Pa]
+short_name = "Pa"
+long_name = "Atmospheric Pressure"
+unit = "Pa"
+unit_latex = "Pa"
+
+[variables.Ta]
+short_name = "Ta"
+long_name = "Air Temperature"
+unit = "K"
+unit_latex = "K"
+
+[variables.RH]
+short_name = "RH"
+long_name = "Relative Humidity"
+unit = "%"
+unit_latex = "\\%"
+
+[variables.VPD]
+short_name = "VPD"
+long_name = "Vapor Pressure Deficit"
+unit = "hPa"
+unit_latex = "hPa"
+
+# =============================================================================
+# Wind variables
+# =============================================================================
+[variables.MWS]
+short_name = "U"
+long_name = "Mean Wind Speed"
+unit = "m/s"
+unit_latex = "m s^{-1}"
+
+[variables.WD]
+short_name = "WD"
+long_name = "Wind Direction"
+unit = "°"
+unit_latex = "^\\circ"
+
+# =============================================================================
+# Precipitation
+# =============================================================================
+[variables.P]
+short_name = "P"
+long_name = "Precipitation"
+unit = "m"
+unit_latex = "m"
+
+# =============================================================================
+# Radiation variables
+# =============================================================================
+[variables.SWin]
+short_name = "SWin"
+long_name = "Shortwave Incoming Radiation"
+unit = "W/m²"
+unit_latex = "W m^{-2}"
+
+[variables.SWout]
+short_name = "SWout"
+long_name = "Shortwave Outgoing Radiation"
+unit = "W/m²"
+unit_latex = "W m^{-2}"
+
+[variables.LWin]
+short_name = "LWin"
+long_name = "Longwave Incoming Radiation"
+unit = "W/m²"
+unit_latex = "W m^{-2}"
+
+[variables.LWout]
+short_name = "LWout"
+long_name = "Longwave Outgoing Radiation"
+unit = "W/m²"
+unit_latex = "W m^{-2}"
+
+[variables.PAR]
+short_name = "PAR"
+long_name = "Photosynthetically Active Radiation"
+unit = "μmol/m²/s"
+unit_latex = "\\mu mol m^{-2} s^{-1}"
+
+[variables.Rn]
+short_name = "Rn"
+long_name = "Net Radiation"
+unit = "W/m²"
+unit_latex = "W m^{-2}"
+
+# =============================================================================
+# Soil water content
+# =============================================================================
+[variables.SWC]
+short_name = "SWC"
+long_name = "Soil Water Content"
+unit = "m³/m³"
+unit_latex = "m^3 m^{-3}"
+
+# =============================================================================
+# Flux variables (carbon/water)
+# =============================================================================
+[variables.NEE]
+short_name = "NEE"
+long_name = "Net Ecosystem Exchange"
+unit = "μg/m²/s"
+unit_latex = "\\mu g m^{-2} s^{-1}"
+
+[variables.RECO]
+short_name = "R_eco"
+long_name = "Ecosystem Respiration"
+unit = "μmol/m²/s"
+unit_latex = "\\mu mol m^{-2} s^{-1}"
+
+[variables.GPP]
+short_name = "GPP"
+long_name = "Gross Primary Production"
+unit = "μmol/m²/s"
+unit_latex = "\\mu mol m^{-2} s^{-1}"
+
+# =============================================================================
+# Eddy covariance - File metadata
+# =============================================================================
+[variables.filename]
+short_name = "filename"
+long_name = "Data File Name"
+unit = ""
+unit_latex = ""
+
+[variables.daytime]
+short_name = "daytime"
+long_name = "Daytime Flag"
+unit = ""
+unit_latex = ""
+
+[variables.file_records]
+short_name = "file_records"
+long_name = "File Records"
+unit = ""
+unit_latex = ""
+
+[variables.used_records]
+short_name = "used_records"
+long_name = "Used Records"
+unit = ""
+unit_latex = ""
+
+# =============================================================================
+# Eddy covariance - Turbulent fluxes
+# =============================================================================
+[variables.Tau]
+short_name = "τ"
+long_name = "Momentum Flux"
+unit = "kg m⁻¹ s⁻²"
+unit_latex = "kg m^{-1} s^{-2}"
+
+[variables.H]
+short_name = "H"
+long_name = "Sensible Heat Flux"
+unit = "W/m²"
+unit_latex = "W m^{-2}"
+
+[variables.LE]
+short_name = "LE"
+long_name = "Latent Heat Flux"
+unit = "W/m²"
+unit_latex = "W m^{-2}"
+
+[variables.co2_flux]
+short_name = "F_CO2"
+long_name = "CO$_2$ Flux"
+unit = "μmol/m²/s"
+unit_latex = "\\mu mol m^{-2} s^{-1}"
+
+[variables.h2o_flux]
+short_name = "F_H2O"
+long_name = "H$_2$O Flux"
+unit = "mmol/m²/s"
+unit_latex = "mmol m^{-2} s^{-1}"
+
+[variables.ch4_flux]
+short_name = "F_CH4"
+long_name = "CH$_4$ Flux"
+unit = "μmol/m²/s"
+unit_latex = "\\mu mol m^{-2} s^{-1}"
+
+# =============================================================================
+# Eddy covariance - Quality control flags
+# =============================================================================
+[variables.qc_Tau]
+short_name = "QC_τ"
+long_name = "Quality Flag for Momentum Flux"
+unit = ""
+unit_latex = ""
+
+[variables.qc_H]
+short_name = "QC_H"
+long_name = "Quality Flag for Sensible Heat Flux"
+unit = ""
+unit_latex = ""
+
+[variables.qc_LE]
+short_name = "QC_LE"
+long_name = "Quality Flag for Latent Heat Flux"
+unit = ""
+unit_latex = ""
+
+[variables.qc_co2_flux]
+short_name = "QC_FCO2"
+long_name = "Quality Flag for CO$_2$ Flux"
+unit = ""
+unit_latex = ""
+
+[variables.qc_h2o_flux]
+short_name = "QC_FH2O"
+long_name = "Quality Flag for H$_2$O Flux"
+unit = ""
+unit_latex = ""
+
+[variables.qc_ch4_flux]
+short_name = "QC_FCH4"
+long_name = "Quality Flag for CH$_4$ Flux"
+unit = ""
+unit_latex = ""
+
+# =============================================================================
+# Eddy covariance - Storage terms
+# =============================================================================
+[variables.H_strg]
+short_name = "H_stor"
+long_name = "Sensible Heat Storage"
+unit = "W/m²"
+unit_latex = "W m^{-2}"
+
+[variables.LE_strg]
+short_name = "LE_stor"
+long_name = "Latent Heat Storage"
+unit = "W/m²"
+unit_latex = "W m^{-2}"
+
+[variables.co2_strg]
+short_name = "S_CO2"
+long_name = "CO$_2$ Storage"
+unit = "μmol/m²/s"
+unit_latex = "\\mu mol m^{-2} s^{-1}"
+
+[variables.h2o_strg]
+short_name = "S_H2O"
+long_name = "H$_2$O Storage"
+unit = "mmol/m²/s"
+unit_latex = "mmol m^{-2} s^{-1}"
+
+[variables.ch4_strg]
+short_name = "S_CH4"
+long_name = "CH$_4$ Storage"
+unit = "μmol/m²/s"
+unit_latex = "\\mu mol m^{-2} s^{-1}"
+
+# =============================================================================
+# Eddy covariance - Vertical advection
+# =============================================================================
+[variables.co2_v-adv]
+short_name = "A_CO2"
+long_name = "CO$_2$ Vertical Advection"
+unit = "μmol/m²/s"
+unit_latex = "\\mu mol m^{-2} s^{-1}"
+
+[variables.h2o_v-adv]
+short_name = "A_H2O"
+long_name = "H$_2$O Vertical Advection"
+unit = "mmol/m²/s"
+unit_latex = "mmol m^{-2} s^{-1}"
+
+[variables.ch4_v-adv]
+short_name = "A_CH4"
+long_name = "CH$_4$ Vertical Advection"
+unit = "μmol/m²/s"
+unit_latex = "\\mu mol m^{-2} s^{-1}"
+
+# =============================================================================
+# Eddy covariance - CO2 concentrations
+# =============================================================================
+[variables.co2_molar_density]
+short_name = "ρ_CO2"
+long_name = "CO$_2$ Molar Density"
+unit = "mmol/m³"
+unit_latex = "mmol m^{-3}"
+
+[variables.co2_mole_fraction]
+short_name = "χ_CO2"
+long_name = "CO$_2$ Mole Fraction"
+unit = "μmol/mol"
+unit_latex = "\\mu mol mol^{-1}"
+
+[variables.co2_mixing_ratio]
+short_name = "r_CO2"
+long_name = "CO$_2$ Mixing Ratio"
+unit = "μmol/mol"
+unit_latex = "\\mu mol mol^{-1}"
+
+[variables.co2_time_lag]
+short_name = "t_lag,CO2"
+long_name = "CO$_2$ Time Lag"
+unit = "s"
+unit_latex = "s"
+
+[variables.co2_def_timelag]
+short_name = "t_lag,CO2,def"
+long_name = "CO$_2$ Default Time Lag Flag"
+unit = ""
+unit_latex = ""
+
+[variables.co2_mean]
+short_name = "CO2_mean"
+long_name = "Mean CO$_2$"
+unit = ""
+unit_latex = ""
+
+# =============================================================================
+# Eddy covariance - H2O concentrations
+# =============================================================================
+[variables.h2o_molar_density]
+short_name = "ρ_H2O"
+long_name = "H$_2$O Molar Density"
+unit = "mmol/m³"
+unit_latex = "mmol m^{-3}"
+
+[variables.h2o_mole_fraction]
+short_name = "χ_H2O"
+long_name = "H$_2$O Mole Fraction"
+unit = "mmol/mol"
+unit_latex = "mmol mol^{-1}"
+
+[variables.h2o_mixing_ratio]
+short_name = "r_H2O"
+long_name = "H$_2$O Mixing Ratio"
+unit = "mmol/mol"
+unit_latex = "mmol mol^{-1}"
+
+[variables.h2o_time_lag]
+short_name = "t_lag,H2O"
+long_name = "H$_2$O Time Lag"
+unit = "s"
+unit_latex = "s"
+
+[variables.h2o_def_timelag]
+short_name = "t_lag,H2O,def"
+long_name = "H$_2$O Default Time Lag Flag"
+unit = ""
+unit_latex = ""
+
+[variables.h2o_mean]
+short_name = "H2O_mean"
+long_name = "Mean H$_2$O"
+unit = ""
+unit_latex = ""
+
+# =============================================================================
+# Eddy covariance - CH4 concentrations
+# =============================================================================
+[variables.ch4_molar_density]
+short_name = "ρ_CH4"
+long_name = "CH$_4$ Molar Density"
+unit = "mmol/m³"
+unit_latex = "mmol m^{-3}"
+
+[variables.ch4_mole_fraction]
+short_name = "χ_CH4"
+long_name = "CH$_4$ Mole Fraction"
+unit = "μmol/mol"
+unit_latex = "\\mu mol mol^{-1}"
+
+[variables.ch4_mixing_ratio]
+short_name = "r_CH4"
+long_name = "CH$_4$ Mixing Ratio"
+unit = "μmol/mol"
+unit_latex = "\\mu mol mol^{-1}"
+
+[variables.ch4_time_lag]
+short_name = "t_lag,CH4"
+long_name = "CH$_4$ Time Lag"
+unit = "s"
+unit_latex = "s"
+
+[variables.ch4_def_timelag]
+short_name = "t_lag,CH4,def"
+long_name = "CH$_4$ Default Time Lag Flag"
+unit = ""
+unit_latex = ""
+
+# =============================================================================
+# Eddy covariance - Atmospheric state
+# =============================================================================
+[variables.sonic_temperature]
+short_name = "T_sonic"
+long_name = "Sonic Temperature"
+unit = "K"
+unit_latex = "K"
+
+[variables.air_temperature]
+short_name = "T_air"
+long_name = "Air Temperature"
+unit = "K"
+unit_latex = "K"
+
+[variables.air_pressure]
+short_name = "P_air"
+long_name = "Air Pressure"
+unit = "Pa"
+unit_latex = "Pa"
+
+[variables.air_density]
+short_name = "ρ_air"
+long_name = "Air Density"
+unit = "kg/m³"
+unit_latex = "kg m^{-3}"
+
+[variables.air_heat_capacity]
+short_name = "c_p"
+long_name = "Air Heat Capacity"
+unit = "J kg⁻¹ K⁻¹"
+unit_latex = "J kg^{-1} K^{-1}"
+
+[variables.air_molar_volume]
+short_name = "V_m"
+long_name = "Air Molar Volume"
+unit = "m³/mol"
+unit_latex = "m^3 mol^{-1}"
+
+# =============================================================================
+# Eddy covariance - Water vapor / humidity
+# =============================================================================
+[variables.ET]
+short_name = "ET"
+long_name = "Evapotranspiration"
+unit = "mm/h"
+unit_latex = "mm h^{-1}"
+
+[variables.water_vapor_density]
+short_name = "ρ_v"
+long_name = "Water Vapor Density"
+unit = "kg/m³"
+unit_latex = "kg m^{-3}"
+
+[variables.e]
+short_name = "e"
+long_name = "Vapor Pressure"
+unit = "Pa"
+unit_latex = "Pa"
+
+[variables.es]
+short_name = "e_s"
+long_name = "Saturation Vapor Pressure"
+unit = "Pa"
+unit_latex = "Pa"
+
+[variables.specific_humidity]
+short_name = "q"
+long_name = "Specific Humidity"
+unit = "kg/kg"
+unit_latex = "kg kg^{-1}"
+
+[variables.Tdew]
+short_name = "T_dew"
+long_name = "Dew Point Temperature"
+unit = "K"
+unit_latex = "K"
+
+# =============================================================================
+# Eddy covariance - Wind components (unrotated)
+# =============================================================================
+[variables.u_unrot]
+short_name = "u_unrot"
+long_name = "U Wind Component (Unrotated)"
+unit = "m/s"
+unit_latex = "m s^{-1}"
+
+[variables.v_unrot]
+short_name = "v_unrot"
+long_name = "V Wind Component (Unrotated)"
+unit = "m/s"
+unit_latex = "m s^{-1}"
+
+[variables.w_unrot]
+short_name = "w_unrot"
+long_name = "W Wind Component (Unrotated)"
+unit = "m/s"
+unit_latex = "m s^{-1}"
+
+# =============================================================================
+# Eddy covariance - Wind components (rotated)
+# =============================================================================
+[variables.u_rot]
+short_name = "u"
+long_name = "U Wind Component (Rotated)"
+unit = "m/s"
+unit_latex = "m s^{-1}"
+
+[variables.v_rot]
+short_name = "v"
+long_name = "V Wind Component (Rotated)"
+unit = "m/s"
+unit_latex = "m s^{-1}"
+
+[variables.w_rot]
+short_name = "w"
+long_name = "W Wind Component (Rotated)"
+unit = "m/s"
+unit_latex = "m s^{-1}"
+
+# =============================================================================
+# Eddy covariance - Wind statistics
+# =============================================================================
+[variables.wind_speed]
+short_name = "U"
+long_name = "Wind Speed"
+unit = "m/s"
+unit_latex = "m s^{-1}"
+
+[variables.max_wind_speed]
+short_name = "U_max"
+long_name = "Maximum Wind Speed"
+unit = "m/s"
+unit_latex = "m s^{-1}"
+
+[variables.wind_dir]
+short_name = "θ"
+long_name = "Wind Direction"
+unit = "°"
+unit_latex = "^\\circ"
+
+[variables.yaw]
+short_name = "yaw"
+long_name = "Yaw Angle"
+unit = "°"
+unit_latex = "^\\circ"
+
+[variables.pitch]
+short_name = "pitch"
+long_name = "Pitch Angle"
+unit = "°"
+unit_latex = "^\\circ"
+
+[variables.roll]
+short_name = "roll"
+long_name = "Roll Angle"
+unit = "°"
+unit_latex = "^\\circ"
+
+# =============================================================================
+# Eddy covariance - Turbulence parameters
+# =============================================================================
+[variables.u_star]
+short_name = "u_star"
+long_name = "Friction Velocity"
+unit = "m/s"
+unit_latex = "m s^{-1}"
+
+[variables.TKE]
+short_name = "TKE"
+long_name = "Turbulent Kinetic Energy"
+unit = "m²/s²"
+unit_latex = "m^2 s^{-2}"
+
+[variables.L]
+short_name = "L"
+long_name = "Obukhov Length"
+unit = "m"
+unit_latex = "m"
+
+[variables."(z-d)/L"]
+short_name = "ζ"
+long_name = "Stability Parameter"
+unit = ""
+unit_latex = ""
+
+[variables.bowen_ratio]
+short_name = "β"
+long_name = "Bowen Ratio"
+unit = ""
+unit_latex = ""
+
+[variables."T*"]
+short_name = "T*"
+long_name = "Temperature Scale"
+unit = "K"
+unit_latex = "K"
+
+# =============================================================================
+# Eddy covariance - Footprint model
+# =============================================================================
+[variables.model]
+short_name = "model"
+long_name = "Footprint Model"
+unit = ""
+unit_latex = ""
+
+[variables.x_peak]
+short_name = "x_peak"
+long_name = "Footprint Peak Distance"
+unit = "m"
+unit_latex = "m"
+
+[variables.x_offset]
+short_name = "x_offset"
+long_name = "Footprint Offset"
+unit = "m"
+unit_latex = "m"
+
+[variables."x_10%"]
+short_name = "x_10"
+long_name = "Footprint 10% Distance"
+unit = "m"
+unit_latex = "m"
+
+[variables."x_30%"]
+short_name = "x_30"
+long_name = "Footprint 30% Distance"
+unit = "m"
+unit_latex = "m"
+
+[variables."x_50%"]
+short_name = "x_50"
+long_name = "Footprint 50% Distance"
+unit = "m"
+unit_latex = "m"
+
+[variables."x_70%"]
+short_name = "x_70"
+long_name = "Footprint 70% Distance"
+unit = "m"
+unit_latex = "m"
+
+[variables."x_90%"]
+short_name = "x_90"
+long_name = "Footprint 90% Distance"
+unit = "m"
+unit_latex = "m"
+
+# =============================================================================
+# Eddy covariance - Uncertainties and correction factors
+# =============================================================================
+[variables.un_Tau]
+short_name = "σ_τ"
+long_name = "Uncertainty in Momentum Flux"
+unit = "kg m⁻¹ s⁻²"
+unit_latex = "kg m^{-1} s^{-2}"
+
+[variables.Tau_scf]
+short_name = "SCF_τ"
+long_name = "Spectral Correction Factor for Momentum Flux"
+unit = ""
+unit_latex = ""
+
+[variables.un_H]
+short_name = "σ_H"
+long_name = "Uncertainty in Sensible Heat Flux"
+unit = "W/m²"
+unit_latex = "W m^{-2}"
+
+[variables.H_scf]
+short_name = "SCF_H"
+long_name = "Spectral Correction Factor for Sensible Heat Flux"
+unit = ""
+unit_latex = ""
+
+[variables.un_LE]
+short_name = "σ_LE"
+long_name = "Uncertainty in Latent Heat Flux"
+unit = "W/m²"
+unit_latex = "W m^{-2}"
+
+[variables.LE_scf]
+short_name = "SCF_LE"
+long_name = "Spectral Correction Factor for Latent Heat Flux"
+unit = ""
+unit_latex = ""
+
+[variables.un_co2_flux]
+short_name = "σ_FCO2"
+long_name = "Uncertainty in CO$_2$ Flux"
+unit = "μmol/m²/s"
+unit_latex = "\\mu mol m^{-2} s^{-1}"
+
+[variables.co2_scf]
+short_name = "SCF_CO2"
+long_name = "Spectral Correction Factor for CO$_2$ Flux"
+unit = ""
+unit_latex = ""
+
+[variables.un_h2o_flux]
+short_name = "σ_FH2O"
+long_name = "Uncertainty in H$_2$O Flux"
+unit = "mmol/m²/s"
+unit_latex = "mmol m^{-2} s^{-1}"
+
+[variables.h2o_scf]
+short_name = "SCF_H2O"
+long_name = "Spectral Correction Factor for H$_2$O Flux"
+unit = ""
+unit_latex = ""
+
+[variables.un_ch4_flux]
+short_name = "σ_FCH4"
+long_name = "Uncertainty in CH$_4$ Flux"
+unit = "μmol/m²/s"
+unit_latex = "\\mu mol m^{-2} s^{-1}"
+
+[variables.ch4_scf]
+short_name = "SCF_CH4"
+long_name = "Spectral Correction Factor for CH$_4$ Flux"
+unit = ""
+unit_latex = ""
+
+# =============================================================================
+# Eddy covariance - Quality flags (high frequency)
+# =============================================================================
+[variables.spikes_hf]
+short_name = "QF_spikes"
+long_name = "High Frequency Spikes Flag"
+unit = ""
+unit_latex = ""
+
+[variables.amplitude_resolution_hf]
+short_name = "QF_amp_res"
+long_name = "Amplitude Resolution Flag"
+unit = ""
+unit_latex = ""
+
+[variables.drop_out_hf]
+short_name = "QF_dropout"
+long_name = "Drop Out Flag"
+unit = ""
+unit_latex = ""
+
+[variables.absolute_limits_hf]
+short_name = "QF_abs_lim"
+long_name = "Absolute Limits Flag"
+unit = ""
+unit_latex = ""
+
+[variables.skewness_kurtosis_hf]
+short_name = "QF_skew_kurt_hf"
+long_name = "Skewness/Kurtosis Flag (HF)"
+unit = ""
+unit_latex = ""
+
+[variables.skewness_kurtosis_sf]
+short_name = "QF_skew_kurt_sf"
+long_name = "Skewness/Kurtosis Flag (SF)"
+unit = ""
+unit_latex = ""
+
+[variables.discontinuities_hf]
+short_name = "QF_discont_hf"
+long_name = "Discontinuities Flag (HF)"
+unit = ""
+unit_latex = ""
+
+[variables.discontinuities_sf]
+short_name = "QF_discont_sf"
+long_name = "Discontinuities Flag (SF)"
+unit = ""
+unit_latex = ""
+
+[variables.timelag_hf]
+short_name = "QF_timelag_hf"
+long_name = "Time Lag Flag (HF)"
+unit = ""
+unit_latex = ""
+
+[variables.timelag_sf]
+short_name = "QF_timelag_sf"
+long_name = "Time Lag Flag (SF)"
+unit = ""
+unit_latex = ""
+
+[variables.attack_angle_hf]
+short_name = "QF_angle"
+long_name = "Attack Angle Flag"
+unit = ""
+unit_latex = ""
+
+[variables.non_steady_wind_hf]
+short_name = "QF_steady"
+long_name = "Non-Steady Wind Flag"
+unit = ""
+unit_latex = ""
+
+# =============================================================================
+# Eddy covariance - Spike counts
+# =============================================================================
+[variables.u_spikes]
+short_name = "spikes_u"
+long_name = "U Wind Spikes"
+unit = ""
+unit_latex = ""
+
+[variables.v_spikes]
+short_name = "spikes_v"
+long_name = "V Wind Spikes"
+unit = ""
+unit_latex = ""
+
+[variables.w_spikes]
+short_name = "spikes_w"
+long_name = "W Wind Spikes"
+unit = ""
+unit_latex = ""
+
+[variables.ts_spikes]
+short_name = "spikes_T"
+long_name = "Temperature Spikes"
+unit = ""
+unit_latex = ""
+
+[variables.co2_spikes]
+short_name = "spikes_CO2"
+long_name = "CO$_2$ Spikes"
+unit = ""
+unit_latex = ""
+
+[variables.h2o_spikes]
+short_name = "spikes_H2O"
+long_name = "H$_2$O Spikes"
+unit = ""
+unit_latex = ""
+
+[variables.ch4_spikes]
+short_name = "spikes_CH4"
+long_name = "CH$_4$ Spikes"
+unit = ""
+unit_latex = ""
+
+# =============================================================================
+# Eddy covariance - Variances
+# =============================================================================
+[variables.u_var]
+short_name = "σ²_u"
+long_name = "U Wind Variance"
+unit = "m²/s²"
+unit_latex = "m^2 s^{-2}"
+
+[variables.v_var]
+short_name = "σ²_v"
+long_name = "V Wind Variance"
+unit = "m²/s²"
+unit_latex = "m^2 s^{-2}"
+
+[variables.w_var]
+short_name = "σ²_w"
+long_name = "W Wind Variance"
+unit = "m²/s²"
+unit_latex = "m^2 s^{-2}"
+
+[variables.ts_var]
+short_name = "σ²_T"
+long_name = "Temperature Variance"
+unit = "K²"
+unit_latex = "K^2"
+
+[variables.co2_var]
+short_name = "σ²_CO2"
+long_name = "CO$_2$ Variance"
+unit = ""
+unit_latex = ""
+
+[variables.h2o_var]
+short_name = "σ²_H2O"
+long_name = "H$_2$O Variance"
+unit = ""
+unit_latex = ""
+
+[variables.ch4_var]
+short_name = "σ²_CH4"
+long_name = "CH$_4$ Variance"
+unit = ""
+unit_latex = ""
+
+# =============================================================================
+# Eddy covariance - Covariances
+# =============================================================================
+[variables."w/ts_cov"]
+short_name = "w'T'"
+long_name = "Kinematic Heat Flux"
+unit = "m K s⁻¹"
+unit_latex = "m K s^{-1}"
+
+[variables."w/co2_cov"]
+short_name = "w'CO2'"
+long_name = "Vertical CO$_2$ Covariance"
+unit = ""
+unit_latex = ""
+
+[variables."w/h2o_cov"]
+short_name = "w'H2O'"
+long_name = "Vertical H$_2$O Covariance"
+unit = ""
+unit_latex = ""
+
+[variables."w/ch4_cov"]
+short_name = "w'CH4'"
+long_name = "Vertical CH$_4$ Covariance"
+unit = ""
+unit_latex = ""

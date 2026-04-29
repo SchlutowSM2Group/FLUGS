@@ -1,0 +1,5 @@
+synth_params:
+  random_seed: 5
+  noise_amplitude: 0.1
+  measurement_noise: 0.1
+  time_frequency: "15min"

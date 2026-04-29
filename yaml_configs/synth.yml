@@ -1,0 +1,44 @@
+dataset_params:
+  csv_filename: "sample_synth_full_output.csv"
+  biomet_filename: "sample_synth_biomet.csv"
+
+  driver_variables:
+    - "PAR"
+    - "Ts"
+
+  source_row: 64
+  source_col: 64
+  measurement_height: 5.0 # [m]
+
+  latitude_extent: [0, 1] # [deg N]
+  longitude_extent: [0, 1] # [deg E]
+
+  start_date: "2025-07-01"
+  end_date: "2025-07-02"
+
+inversion_params:
+  regularization_parameter: 1e-1
+  kernel_type: 'rbf'  # 'RBF' or 'polynomial'
+
+land_cover_params:
+  dx: 2.0
+  dy: 2.0
+  land_cover_filename: "sample_land_cover_IDs_2000mx2000m_256x256_0100.dat"
+  land_cover_names: ["LCC 0", "LCC 1"]
+  land_cover_groups: 
+    - [0]
+    - [1]
+
+
+run_params:
+  observation_variable: "NEE"
+  driver_variables_to_filter: "qc_flx"
+
+
+footprint_model_params:
+  modes: [256, 256]
+  nz: 32
+
+diagnostic_params:
+  output_land_cover_mask: False
+  debug_plot_stacked_land_covers: False

@@ -1,0 +1,87 @@
+run_params:
+  observation_variable: "H"
+  driver_variables_to_filter: "qc_H"
+
+
+footprint_model_params:
+  modes: [256, 256]
+  nz: 16
+
+
+dataset_params:
+  latitude_extent: [68.60956, 68.62005]
+  longitude_extent: [161.334, 161.3676]
+
+  #start_date: "2015-06-07"
+  #start_date: "2015-06-21"
+  #start_date: "2015-07-01"
+  #start_date: "2015-07-07"
+  #start_date: "2015-08-07"
+  start_date: "2015-07-14"
+  #start_date: "2015-07-18"
+  #end_date: "2015-06-11"
+  #end_date: "2015-06-28"
+  #end_date: "2015-07-08"
+  #end_date: "2015-07-14"
+  end_date: "2015-07-21"
+  #end_date: "2015-08-14"
+
+  source_row: 376
+  source_col: 146
+  measurement_height: 4.91
+  csv_filename: "eddypro_cherskii_tower1_full_output_compressed.csv"
+  biomet_filename: "eddypro_cherskii_tower1_biomet_compressed.csv"
+
+  driver_variables:
+    - "Rn_1_1_1"
+    - "Ta_1_1_1"
+
+
+inversion_params:
+  regularization_parameter: 1.0
+
+land_cover_params:
+  dx: 2.008541
+  dy: 2.008541
+  land_cover_filename: "cherskii_land_cover.txt"
+  land_cover_names: ["G", "S+T"]
+  land_cover_groups : [[1,2,3,4,10,11],    # grass
+            [6,7,12,5,8,9,13]]  # shrubs & trees
+  #lt_grp : [[8,11],
+  #          [0,1,2,3,6,7,9,10,11,12],
+  #          [4,5,13]]
+  #lt_grp : [[0],[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13]] # all of them
+  #lt_grp : [[6,7,11], # based on observed clustering when running all 
+  #          [1,2,10,12,13],
+  #          [0,3,4,5,8,9]]
+  #lt_grp : [[1,2,3,4,10,11],    # grass
+  #          [6,7,12],           # shrubs
+  #          [5,8,9,13]]         # trees
+  #lt_grp : [[0],                   # open water bodies
+  #         [1,2,3,4,10,11,6,7,12], # grass and shrubs
+  #         [5,8,9,13]]             # trees
+  #lt_grp : [[0],                # water
+  #          [1,2,3,4,10,11],    # grass
+  #          [5,8,9,13,6,7,12]]  # trees and shrubs
+  #lt_grp : [[0],                # water
+  #          [1,2,3,4,10,11,5,8,9,13,6,7,12]]    # grass, shrubs and trees
+
+# twr_params:
+  # variables to keep (biomet)
+  # we put these into the yml file and not into
+  # the init for parameters, because we want to
+  # leave all twr-dependent variables here
+
+    #- "RH"
+
+
+# tower_data:
+#   tower_1:
+#     twr: 1
+#   tower_2:
+#     twr: 2
+#     twr_row: 162
+#     twr_col: 338
+#     zm: 5.11
+#     csv_filename: "eddypro_CherskiiTower2_full_output_2022-12-20T170838_adv.csv"
+#     bm_filename: "eddypro_CherskiiTower2_biomet_2022-12-19T161600_adv.csv"

@@ -1,0 +1,78 @@
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  format-check:
+    name: Run Black Formatter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install Black
+        run: pip install black==25.1.0
+
+      - name: Run Black
+        run: black --check .
+
+  install-smoke:
+    name: Install + Import Smoke
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libfftw3-dev
+
+      - name: Install Package
+        run: pip install -e .
+
+      - name: Smoke Import
+        run: |
+          python -c "import flugs; import flugs.run; import flugs.utils.synth_data_generator; print('OK')"
+
+  docs:
+    name: Build Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libfftw3-dev
+
+      - name: Install Dependencies
+        run: pip install -e '.[docs]'
+
+      - name: Build Sphinx docs
+        run: |
+          cd docs
+          python -m sphinx -W --keep-going -b html source build/html

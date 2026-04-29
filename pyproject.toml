@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flugs"
+version = "1.0.0"
+description = "FLUGS - submeso flux inversion (manuscript reproduction package)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Mark Schlutow", email = "mschlutow@bgc-jena.mpg.de"},
+    {name = "Ray Chew", email = "chew@caltech.edu"},
+    {name = "Mathias Göckede", email = "mgoeckede@bgc-jena.mpg.de"},
+]
+dependencies = [
+    "bldfm @ git+https://github.com/SchlutowSM2Group/BLDFM.git@0728e41060d4ae58717bef8bc2a74a921bcc8ee1",
+    "matplotlib>=3.7.3",
+    "numpy>=1.23.5",
+    "pandas>=2.0.3",
+    "scipy>=1.10.1",
+    "pyyaml>=6.0",
+    "scikit-learn>=1.3.0",
+    "tomli>=2.0.1",
+]
+
+[project.optional-dependencies]
+docs = [
+    "sphinx",
+    "furo",
+    "sphinx-copybutton",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/SchlutowSM2Group/FLUGS"
+"Bug Tracker" = "https://github.com/SchlutowSM2Group/FLUGS/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["flugs", "flugs.utils", "flugs.plotting"]
+include-package-data = false
