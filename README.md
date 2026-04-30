@@ -22,6 +22,15 @@ FLUGS reproduces the **synth** (synthetic, two land-cover classes) and
 **cherskii** (EddyPro tower data, two towers × two observables) experiments
 from the submeso flux-inversion manuscript end-to-end.
 
+> **Note (post-publication correction).** v1.0.1 fixes an LCM-orientation
+> bug in the loader that distorted BLDFM's internal `dx` / `dy` for
+> non-square grids. The synth experiment is unaffected (its grid is
+> square); the cherskii tower-2 results improve substantially with the
+> fix (e.g. CO₂ tower-2 R² 0.42 → 0.89). See `CHANGELOG.md` for details.
+> The figures in the manuscript were generated under the legacy
+> convention; the corrected figures are produced when running the
+> pipeline from this version of the repo.
+
 The package wraps the [BLDFM](https://github.com/SchlutowSM2Group/BLDFM)
 boundary-layer dispersion solver and adds:
 

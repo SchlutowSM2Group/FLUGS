@@ -69,7 +69,7 @@ run_config.landcover.land_cover_names = None
 # Land Cover Map
 #############################################################
 if run_config.run_name == "synth":
-    land_cover_stack = np.nanmax(sim_data.land_cover_by_group, axis=0).T
+    land_cover_stack = np.nanmax(sim_data.land_cover_by_group, axis=0)
     fig, axes = lcm_plotter.plot_field2d(
         land_cover_stack,
         xmx=sim_data.grid.xmx,

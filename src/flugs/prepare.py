@@ -174,9 +174,9 @@ def initialise_land_cover_by_group(
     meas_pt = grid_params.measurement_point
     pad_width = run_config.footprint_model.pad_width
 
-    # Create stacked land cover arrays for all groups
+    # Create stacked land cover arrays for all groups (canonical (ny, nx))
     lc_stacked_by_grp = np.empty(
-        (run_config.landcover.I_gtyp, grid_params.nx, grid_params.ny)
+        (run_config.landcover.I_gtyp, grid_params.ny, grid_params.nx)
     )
     lc_stacked_by_grp[...] = np.nan
 
@@ -184,18 +184,14 @@ def initialise_land_cover_by_group(
 
     for g_idx, grp in enumerate(run_config.landcover.lt_grp):
         for ltyp in grp:
-            # Load and process this land type
             curr = _load_land_cover_in_grid_format(
                 run_config.landcover.land_cover_fn, ltyp, pad_width
             )
-            # Update stack
             lc_stacked_by_grp[g_idx, ...] = np.fmax(lc_stacked_by_grp[g_idx, ...], curr)
-
-        lc_by_group_T = lc_stacked_by_grp[g_idx, ...].T
 
         if run_config.diagnostics.debug_plot_stacked_land_covers:
             _debug_plot(
-                lc_by_group_T,
+                lc_stacked_by_grp[g_idx, ...],
                 grid_params,
                 run_config,
                 title=f"run_{run_config.run_name}_ltyp_grp_{g_idx}",
@@ -203,7 +199,7 @@ def initialise_land_cover_by_group(
             )
 
     if run_config.diagnostics.debug_plot_stacked_land_covers:
-        full_stack = np.nanmax(lc_stacked_by_grp, axis=0).T
+        full_stack = np.nanmax(lc_stacked_by_grp, axis=0)
         _debug_plot(
             full_stack,
             grid_params,
@@ -213,7 +209,7 @@ def initialise_land_cover_by_group(
         )
 
     if run_config.diagnostics.output_land_cover_mask:
-        full_stack = np.nanmax(lc_stacked_by_grp, axis=0).T
+        full_stack = np.nanmax(lc_stacked_by_grp, axis=0)
         full_boundary_mask = np.where(np.isnan(full_stack), 1.0, 0.0)
 
         _debug_plot(
@@ -232,19 +228,19 @@ def initialise_land_cover_by_group(
     for g_idx, grp in enumerate(run_config.landcover.lt_grp):
         if run_config.diagnostics.output_land_cover_mask:
             Path(mask_dir).mkdir(parents=True, exist_ok=True)
-            np.save(f"{mask_dir}/mask_lc{g_idx}.npy", lc_masks_by_grp[g_idx, ...].T)
+            np.save(f"{mask_dir}/mask_lc{g_idx}.npy", lc_masks_by_grp[g_idx, ...])
 
     return lc_stacked_by_grp, lc_masks_by_grp
 
 
 def initialise_grid(run_config: RunConfig, ltyp: int = 0) -> GridParams:
-    """Load domain and initialize grid parameters."""
-    # Load and process domain
+    """Load domain and initialize grid parameters in canonical ``(ny, nx)``
+    layout (row 0 = south, col 0 = west)."""
     pad_width = run_config.footprint_model.pad_width
     curr = _load_land_cover_in_grid_format(
         run_config.landcover.land_cover_fn, ltyp, pad_width
     )
-    nx, ny = curr.shape
+    ny, nx = curr.shape
 
     # Calculate grid
     xmx = run_config.landcover.dx * (nx - 1)
@@ -252,11 +248,11 @@ def initialise_grid(run_config: RunConfig, ltyp: int = 0) -> GridParams:
     x = np.linspace(0, xmx, nx)
     y = np.linspace(0, ymx, ny)
 
-    # Adjust tower location to match model grid
-    grid_src_row = ny - (run_config.dataset.source_row + pad_width)
+    # Tower location in canonical layout: source_row is the file row (rows
+    # going N→S in GIS convention), so canonical_row = ny - 1 - source_row.
+    grid_src_row = (ny - 1 - run_config.dataset.source_row) + pad_width
     grid_src_col = run_config.dataset.source_col + pad_width
 
-    # Copy attributes from config to grid data class; store grid info
     return GridParams(
         nx, ny, xmx, ymx, x, y, grid_src_row, grid_src_col, pad_width, curr
     )
@@ -268,6 +264,10 @@ def _load_land_cover_in_grid_format(
     """
     Load and process land cover data in grid format.
 
+    Returns the array in canonical ``(ny, nx)`` layout (row 0 = south,
+    col 0 = west), matching ``imshow(origin='lower')`` and the convention
+    BLDFM expects for ``srf_flx`` (``ny, nx = q0.shape`` in its solver).
+
     Args:
         land_cover_fn: Path to land cover file
         ltyp: Land type to filter for
@@ -277,10 +277,11 @@ def _load_land_cover_in_grid_format(
         Processed land cover array with grid orientation and padding
     """
     land_cover_data = load_data(land_cover_fn)
-    curr = (
-        land_cover_data.where(land_cover_data == ltyp)
-        .to_numpy(dtype=float)[::-1, ...]
-        .T
-    )
+    # Flip rows N→S to S→N so row 0 is the southernmost row. No transpose:
+    # downstream consumers (BLDFM solver, plotting, inversion) all expect
+    # the (ny, nx) layout.
+    curr = land_cover_data.where(land_cover_data == ltyp).to_numpy(dtype=float)[
+        ::-1, ...
+    ]
     curr = np.pad(curr, pad_width, mode="constant", constant_values=np.nan)
     return curr

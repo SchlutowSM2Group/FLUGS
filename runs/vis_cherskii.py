@@ -91,17 +91,15 @@ for tower in towers:
 fig, axes = plt.subplots(1, 2, figsize=(12, 4), constrained_layout=True, sharey=True)
 
 full_lcm = load_data(tower_data[towers[0]]["run_config"].landcover.land_cover_fn)
-full_lcm = full_lcm.to_numpy()[::-1, ...]  # Transpose to (rows, cols)
+full_lcm = full_lcm.to_numpy()[::-1, ...]  # Flip rows N→S to S→N (canonical layout)
 
 lcm_by_group = tower_data[towers[0]]["sim_data"].land_cover_by_group
-# Convert (group, x, y) to 2D array where group 0 → 1, group 1 → 2, etc.
+# Convert (group, ny, nx) to 2D array where group 0 → 1, group 1 → 2, etc.
 grouped_lcm = np.full(lcm_by_group.shape[1:], np.nan)  # Initialize with NaN
 for i in range(lcm_by_group.shape[0]):
     # Where this group has data (non-NaN), assign group index + 1
     mask = ~np.isnan(lcm_by_group[i])
     grouped_lcm[mask] = i + 1
-
-grouped_lcm = grouped_lcm.T  # Transpose to match full_lcm orientation
 
 marker_locs = [
     tower_data[towers[0]]["sim_data"].grid.measurement_point,
