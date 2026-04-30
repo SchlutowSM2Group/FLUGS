@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "flugs"
 version = "1.0.1"
-description = "FLUGS - submeso flux inversion (manuscript reproduction package)"
+description = "FLUGS - submeso flux inversion"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {file = "LICENSE"}
