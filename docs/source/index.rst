@@ -5,9 +5,8 @@ FLUGS — Submeso Flux Inversion
 tower measurements by combining kernel ridge regression with atmospheric
 footprints from `BLDFM <https://github.com/SchlutowSM2Group/BLDFM>`_.
 
-This is the **manuscript-reproduction package**: a frozen, self-contained
-copy of the code that reproduces the synth and cherskii experiments. For
-ongoing development see the private FLUGS development repository.
+This package reproduces the synth and cherskii experiments from the
+manuscript end-to-end.
 
 Key features
 ------------

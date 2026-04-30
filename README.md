@@ -4,11 +4,11 @@
   </a>
 </p>
 
-<h2 align="center">FLUGS — Submeso Flux Inversion (Manuscript Reproduction)</h2>
+<h2 align="center">FLUGS — Submeso Flux Inversion</h2>
 
 <p align="center">
 <a href="https://github.com/SchlutowSM2Group/FLUGS/actions/workflows/ci.yml">
-<img alt="GitHub Actions: CI" src="https://img.shields.io/github/actions/workflow/status/SchlutowSM2Group/FLUGS/ci.yml?logo=github&label=ci">
+<img alt="Documentation build" src="https://img.shields.io/github/actions/workflow/status/SchlutowSM2Group/FLUGS/ci.yml?logo=github&label=docs">
 </a>
 <a href="https://www.gnu.org/licenses/gpl-3.0">
 <img alt="License: GPL v3" src="https://img.shields.io/badge/License-GPLv3-blue.svg">
@@ -18,9 +18,9 @@
 </a>
 </p>
 
-Frozen code accompanying the submeso flux-inversion manuscript. This repository
-reproduces the **synth** (synthetic, two land-cover classes) and **cherskii**
-(EddyPro tower data, two towers × two observables) experiments end-to-end.
+FLUGS reproduces the **synth** (synthetic, two land-cover classes) and
+**cherskii** (EddyPro tower data, two towers × two observables) experiments
+from the submeso flux-inversion manuscript end-to-end.
 
 The package wraps the [BLDFM](https://github.com/SchlutowSM2Group/BLDFM)
 boundary-layer dispersion solver and adds:
@@ -34,7 +34,7 @@ boundary-layer dispersion solver and adds:
 
 ```
 python  >= 3.10
-bldfm   (pinned to git+https://github.com/SchlutowSM2Group/BLDFM.git@0728e41 — last pre-abl-tk commit on main)
+bldfm   (pinned to git+https://github.com/SchlutowSM2Group/BLDFM.git@0728e41)
 matplotlib, numpy, pandas, scipy, pyyaml, scikit-learn, tomli
 ```
 

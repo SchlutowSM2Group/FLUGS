@@ -1,9 +1,9 @@
 Package Overview
 ================
 
-FLUGS is organised as a small Python package under ``src/flugs/`` with four
-top-level run scripts under ``runs/`` (``generate_synth_data.py``,
-``run_flugs.py``, ``vis_synth.py``, ``vis_cherskii.py``).
+FLUGS is organised as a package under ``src/flugs/`` with four top-level
+run scripts under ``runs/`` (``generate_synth_data.py``, ``run_flugs.py``,
+``vis_synth.py``, ``vis_cherskii.py``).
 
 Pipeline
 --------
