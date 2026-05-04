@@ -1,6 +1,4 @@
-"""Inversion core: weight matrix, kernel/design matrix, and CG solver."""
-
-import logging
+"""Inversion core: weight matrix, kernel matrix, and Visick eigendecomposition solver."""
 
 import numpy as np
 
@@ -72,82 +70,28 @@ def _build_kernel_matrix(run_config: RunConfig, sim_data: SimData) -> np.ndarray
     return K
 
 
-def generate_design_matrix(run_config: RunConfig, sim_data: SimData) -> np.ndarray:
-    """Return ``K^{1/2}`` (principal square root) as the design matrix."""
-    from scipy.linalg import sqrtm
-
-    K = _build_kernel_matrix(run_config, sim_data)
-    return sqrtm(K).real.T
+def generate_kernel_matrix(run_config: RunConfig, sim_data: SimData) -> np.ndarray:
+    """Return the (N x N) kernel matrix K."""
+    return _build_kernel_matrix(run_config, sim_data)
 
 
-def flugs_quattro_matvec(x, L, W, U, V):
-    """Compute ``[(L^T ⊗ W)^T S (U^T ⊗ V)] @ x`` without forming the full matrix.
-
-    Identity exploited::
-
-        [(L^T ⊗ W)^T S (U^T ⊗ V)]_{pi, qj} = Σ_n L_{pn} U_{qn} W_{ni} V_{nj}
-
-    Parameters
-    ----------
-    x : ndarray, shape (Q*J,)
-    L : ndarray, shape (P, N)
-    W : ndarray, shape (N, I)
-    U : ndarray, shape (Q, N)
-    V : ndarray, shape (N, J)
-
-    Returns
-    -------
-    ndarray, shape (P*I,)
-    """
-    Q, J = U.shape[0], V.shape[1]
-    X = x.reshape(Q, J)
-    Z = np.sum(U * (X @ V.T), axis=0)
-    return ((L * Z) @ W).flatten()
-
-
-def _solve_inversion(design_matrix, weight_matrix, target, reg, N, I, P):
-    """Conjugate-gradient solve of the regularized normal equations.
-
-    Solves::
-
-        [(L^T ⊗ W)^T (L^T ⊗ W) + λI] bvec = (L ⊗ W)^T target
-
-    Returns ``(bvec, info)`` where *info* is the scipy CG convergence flag.
-    """
-    from scipy.sparse.linalg import cg, LinearOperator
-
-    L = design_matrix
-    W = weight_matrix
-
-    def cmat_matvec(x):
-        return flugs_quattro_matvec(x, L.T, W, L.T, W) + reg * x
-
-    cmat = LinearOperator(shape=(I * P, I * P), matvec=cmat_matvec, dtype=np.float64)
-
-    ovec = np.ones((1, N))
-    idN = np.eye(N)
-    rhs = flugs_quattro_matvec(target, L, W, ovec, idN)
-
-    bvec, info = cg(cmat, rhs, atol=1e-10)
-    if info != 0:
-        logging.warning(f"Conjugate gradient did not converge, info={info}")
-
-    return bvec, info
-
-
-def run_optimizer(
-    design_matrix: np.ndarray,
-    weight_matrix: np.ndarray,
+def run_optimizer_eig(
+    kernel_mat: np.ndarray,
+    weight_mat: np.ndarray,
     run_data: RunConfig,
     sim_data: SimData,
-) -> tuple[np.ndarray, dict, float]:
-    """CG-based KRR solver.
+) -> tuple[np.ndarray, dict]:
+    """Eigendecomposition-based KRR solver (Visick 2000).
+
+    Solves the weighted-kernel ridge regression problem
+    ``[K ⊙ (W W^T) + λI] α = y`` via the symmetric eigendecomposition
+    ``K_w = V Λ V^T``, giving ``α = V (Λ + λI)^{-1} V^T y``.
 
     Parameters
     ----------
-    design_matrix : ndarray, shape (N, P)
-        Temporal design matrix ``L = K^{1/2}``.
-    weight_matrix : ndarray, shape (N, I_gtyp)
+    kernel_mat : ndarray, shape (N, N)
+        Driver-variable kernel matrix ``K`` from :func:`generate_kernel_matrix`.
+    weight_mat : ndarray, shape (N, I_gtyp)
         Footprint × land-cover weight matrix from :func:`compute_weight_matrix`.
     run_data : RunConfig
     sim_data : SimData
@@ -155,29 +99,25 @@ def run_optimizer(
     Returns
     -------
     scaling_factors : ndarray, shape (N, I_gtyp)
+        Per-LCC ERF weights ``S = (W^T diag(α) K)^T``.
     statistics : dict
         Output of :func:`flugs.utils.diagnostics.get_statistics`.
-    cost_function : float
-        ``||W S^T - y||² + λ ||bvec||²``.
     """
-    N = sim_data.N
-    I = run_data.landcover.I_gtyp
-    P = design_matrix.shape[1]
+    from scipy.linalg import eigh
 
     reg = run_data.inversion.regularization_parameter
 
-    logging.info(f"N = {N}, I = {I}, P = {P}")
-
     target = get_df_col(sim_data.measurement_data, run_data.observation_variable)
 
-    bvec, info = _solve_inversion(design_matrix, weight_matrix, target, reg, N, I, P)
+    weighted_ker_mat = kernel_mat * (weight_mat @ weight_mat.T)
 
-    B = bvec.reshape(P, I)
-    avec = (design_matrix @ B).flatten()
-    scaling_factors = avec.reshape((N, I))
+    eigvals, eigvecs = eigh(weighted_ker_mat)
 
-    model = np.diagonal(weight_matrix @ scaling_factors.T)
+    dual_coeffs = eigvecs @ ((1.0 / (eigvals + reg)) * (eigvecs.T @ target))
+
+    scaling_factors = (weight_mat.T @ (dual_coeffs[:, None] * kernel_mat)).T
+
+    model = weighted_ker_mat @ dual_coeffs
     statistics = get_statistics(model, target)
-    cost_function = np.sum((model - target) ** 2) + reg * np.sum(bvec**2)
 
-    return scaling_factors, statistics, cost_function
+    return scaling_factors, statistics

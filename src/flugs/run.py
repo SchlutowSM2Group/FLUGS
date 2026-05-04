@@ -7,8 +7,8 @@ from .config import OUTPUT_DIR
 from .footprint_interface import get_footprints
 from .inversion import (
     compute_weight_matrix,
-    generate_design_matrix,
-    run_optimizer,
+    generate_kernel_matrix,
+    run_optimizer_eig,
 )
 from .prepare import get_data
 from .utils import array_utils as au
@@ -20,10 +20,10 @@ def main():
     """Run the full inversion pipeline for one YAML configuration.
 
     Reads ``-c <config>`` (and optionally ``-r <run_name>``) from ``sys.argv``,
-    computes BLDFM footprints, builds the weight and design matrices, solves
-    the regularised inversion via conjugate gradient, and writes the
-    per-land-cover-group scaling factors plus run metadata to a timestamped
-    directory under ``OUTPUT_DIR``.
+    computes BLDFM footprints, builds the weight and kernel matrices, solves
+    the regularised inversion via the Visick (2000) eigendecomposition of the
+    weighted kernel, and writes the per-land-cover-group scaling factors plus
+    run metadata to a timestamped directory under ``OUTPUT_DIR``.
     """
     start_time = datetime.now()
 
@@ -54,13 +54,13 @@ def main():
         sim_data.N = int(fp_success.sum())
 
     weight_matrix = compute_weight_matrix(footprints, run_config, sim_data)
-    design_matrix = generate_design_matrix(run_config, sim_data)
+    kernel_matrix = generate_kernel_matrix(run_config, sim_data)
 
-    scaling_factors, statistics, cost_func = run_optimizer(
-        design_matrix, weight_matrix, run_config, sim_data
+    scaling_factors, statistics = run_optimizer_eig(
+        kernel_matrix, weight_matrix, run_config, sim_data
     )
+    cost_func = None
 
-    logging.info(f"cost_func = {cost_func}")
     for key, value in statistics.items():
         logging.info(f"{key} = {value}")
 
