@@ -56,6 +56,15 @@ About
 
 FLUGS is developed by Mark Schlutow, Ray Chew, and Mathias Göckede.
 
+License
+-------
+
+FLUGS is released under the `PolyForm Noncommercial License 1.0.0
+<https://polyformproject.org/licenses/noncommercial/1.0.0>`_. Use by
+individuals, charitable organisations, educational institutions, public
+research organisations, and government institutions is permitted; commercial
+use requires a separate licence from the authors.
+
 .. toctree::
    :maxdepth: 2
    :hidden:

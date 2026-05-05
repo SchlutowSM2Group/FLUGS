@@ -10,8 +10,8 @@
 <a href="https://github.com/SchlutowSM2Group/FLUGS/actions/workflows/ci.yml">
 <img alt="Documentation build" src="https://img.shields.io/github/actions/workflow/status/SchlutowSM2Group/FLUGS/ci.yml?logo=github&label=docs">
 </a>
-<a href="https://www.gnu.org/licenses/gpl-3.0">
-<img alt="License: GPL v3" src="https://img.shields.io/badge/License-GPLv3-blue.svg">
+<a href="https://polyformproject.org/licenses/noncommercial/1.0.0">
+<img alt="License: PolyForm Noncommercial 1.0.0" src="https://img.shields.io/badge/License-PolyForm%20NC%201.0.0-blue.svg">
 </a>
 <a href="https://github.com/psf/black">
 <img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg">
@@ -123,4 +123,8 @@ FLUGS/
 
 ## License
 
-See `LICENSE`.
+FLUGS is released under the [PolyForm Noncommercial License 1.0.0](https://polyformproject.org/licenses/noncommercial/1.0.0).
+Use by individuals, charitable organisations, educational institutions, public
+research organisations, and government institutions is permitted; commercial
+use requires a separate licence from the authors. See [`LICENSE.md`](LICENSE.md)
+for the full text.

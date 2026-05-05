@@ -2,6 +2,14 @@
 
 ## v1.0.1 (Unreleased)
 
+### Added
+
+- **License.** FLUGS is now released under the [PolyForm Noncommercial
+  License 1.0.0](https://polyformproject.org/licenses/noncommercial/1.0.0);
+  see `LICENSE.md`. Noncommercial use (research, education, government,
+  public-benefit organisations) is permitted; commercial use requires a
+  separate licence.
+
 ### Fixed
 
 - **LCM orientation bug for non-square grids.** The legacy loader applied

@@ -8,7 +8,7 @@ version = "1.0.1"
 description = "FLUGS - submeso flux inversion"
 readme = "README.md"
 requires-python = ">=3.10"
-license = {file = "LICENSE"}
+license = {file = "LICENSE.md"}
 authors = [
     {name = "Mark Schlutow", email = "mschlutow@bgc-jena.mpg.de"},
     {name = "Ray Chew", email = "chew@caltech.edu"},
