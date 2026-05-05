@@ -8,7 +8,8 @@ run scripts under ``runs/`` (``generate_synth_data.py``, ``run_flugs.py``,
 Pipeline
 --------
 
-For each timestep with valid eddy-covariance observations:
+The orchestrator :func:`flugs.run.main` (invoked via ``python -m flugs``) runs
+the following per timestep with valid eddy-covariance observations:
 
 1. **Footprint** — :func:`flugs.footprint_interface.get_footprints` calls
    BLDFM to compute the per-timestep footprint sensitivity field. Results are
@@ -16,13 +17,13 @@ For each timestep with valid eddy-covariance observations:
 2. **Weight matrix** — :func:`flugs.inversion.compute_weight_matrix` convolves
    each footprint with each land-cover-group binary mask, yielding ``W`` of
    shape ``(N, I_gtyp)``.
-3. **Design matrix** — :func:`flugs.inversion.generate_design_matrix` builds
-   the principal square root ``L = K^{1/2}`` of the driver kernel matrix
-   (linear / polynomial / RBF).
-4. **Conjugate-gradient solver** — :func:`flugs.inversion.run_optimizer`
-   solves the regularised normal equations
-   ``[(L^T ⊗ W)^T (L^T ⊗ W) + λI] bvec = (L ⊗ W)^T y`` without ever forming
-   the Kronecker product explicitly.
+3. **Kernel matrix** — :func:`flugs.inversion.generate_kernel_matrix` builds
+   the ``N × N`` driver kernel matrix ``K`` (linear / polynomial / RBF).
+4. **Eigendecomposition solver** — :func:`flugs.inversion.run_optimizer_eig`
+   solves the weighted-kernel ridge regression problem
+   ``[K ⊙ (W W^T) + λI] α = y`` via the symmetric eigendecomposition
+   ``K_w = V Λ V^T`` (Visick 2000), giving
+   ``α = V (Λ + λI)^{-1} V^T y``.
 5. **Output** — per-land-cover-group scaling factors are stacked with
    timestamps and driver values and saved to
    ``outputs/<run>_<timestamp>/<run>_flugs.csv``.

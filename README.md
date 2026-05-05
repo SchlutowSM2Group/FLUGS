@@ -7,8 +7,8 @@
 <h2 align="center">FLUGS — Submeso Flux Inversion</h2>
 
 <p align="center">
-<a href="https://github.com/SchlutowSM2Group/FLUGS/actions/workflows/ci.yml">
-<img alt="Documentation build" src="https://img.shields.io/github/actions/workflow/status/SchlutowSM2Group/FLUGS/ci.yml?logo=github&label=docs">
+<a href="https://schlutowsm2group.github.io/FLUGS/">
+<img alt="Documentation" src="https://img.shields.io/badge/docs-online-green?logo=github">
 </a>
 <a href="https://polyformproject.org/licenses/noncommercial/1.0.0">
 <img alt="License: PolyForm Noncommercial 1.0.0" src="https://img.shields.io/badge/License-PolyForm%20NC%201.0.0-blue.svg">
@@ -22,8 +22,7 @@ FLUGS reproduces the **synth** (synthetic, two land-cover classes) and
 **cherskii** (EddyPro tower data, two towers × two observables) experiments
 from the submeso flux-inversion manuscript end-to-end.
 
-The package wraps the [BLDFM](https://github.com/SchlutowSM2Group/BLDFM)
-boundary-layer dispersion solver and adds:
+The package wraps the Boundary Layer Dispersion and Footprint Model ([BLDFM](https://github.com/SchlutowSM2Group/BLDFM)) and adds:
 
 - a kernel-ridge inversion that maps tower flux observations to per-land-cover-group response functions;
 - per-timestep footprint caching (hash-keyed, on disk);
@@ -104,7 +103,7 @@ FLUGS/
 │   ├── config.py               # path resolution (env vars + project-root defaults)
 │   ├── prepare.py              # data loading, grid, land-cover masks
 │   ├── footprint_interface.py  # BLDFM caller with on-disk cache
-│   ├── inversion.py            # weight matrix, kernel matrix, CG solver
+│   ├── inversion.py            # weight matrix, kernel matrix, eigendecomposition solver
 │   ├── run.py                  # pipeline orchestrator
 │   ├── plotting/               # StyleManager, LabelManager, TimeSeries/Response/SpatialPlotter
 │   └── utils/                  # io, diagnostics, response_functions, data_classes, …
@@ -114,10 +113,11 @@ FLUGS/
 ## Citation
 
 ```bibtex
-@article{TODO,
+@article{flugs,
   author = {Schlutow, Mark and Chew, Ray and Göckede, Mathias},
-  title  = {TODO — manuscript title},
-  year   = {TODO}
+  title  = {Spatial decomposition of eddy covariance fluxes: the FLUGS framework},
+  year   = {2026},
+  doi    = {https://doi.org/10.22541/au.176800032.22523770/v2}
 }
 ```
 

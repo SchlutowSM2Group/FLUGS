@@ -33,3 +33,15 @@ flugs.plotting.spatial
 
 .. automodule:: flugs.plotting.spatial
    :members:
+
+flugs.plotting.axes
+-------------------
+
+.. automodule:: flugs.plotting.axes
+   :members:
+
+flugs.plotting.helpers
+----------------------
+
+.. automodule:: flugs.plotting.helpers
+   :members:

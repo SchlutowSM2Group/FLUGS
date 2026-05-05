@@ -28,3 +28,9 @@ flugs.inversion
 
 .. automodule:: flugs.inversion
    :members:
+
+flugs.run
+---------
+
+.. automodule:: flugs.run
+   :members:
