@@ -15,7 +15,7 @@ authors = [
     {name = "Mathias Göckede", email = "mgoeckede@bgc-jena.mpg.de"},
 ]
 dependencies = [
-    "bldfm @ git+https://github.com/SchlutowSM2Group/BLDFM.git@0728e41060d4ae58717bef8bc2a74a921bcc8ee1",
+    "bldfm @ git+https://github.com/SchlutowSM2Group/BLDFM.git@fe38892ac396674fed2a12740683b7d645c8e671",
     "matplotlib>=3.7.3",
     "numpy>=1.23.5",
     "pandas>=2.0.3",
